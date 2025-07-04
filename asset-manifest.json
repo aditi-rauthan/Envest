@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Envest/static/css/main.a1d4d297.css",
-    "main.js": "/Envest/static/js/main.11ed20c1.js",
+    "main.js": "/Envest/static/js/main.6d6d78a6.js",
     "index.html": "/Envest/index.html",
     "main.a1d4d297.css.map": "/Envest/static/css/main.a1d4d297.css.map",
-    "main.11ed20c1.js.map": "/Envest/static/js/main.11ed20c1.js.map"
+    "main.6d6d78a6.js.map": "/Envest/static/js/main.6d6d78a6.js.map"
   },
   "entrypoints": [
     "static/css/main.a1d4d297.css",
-    "static/js/main.11ed20c1.js"
+    "static/js/main.6d6d78a6.js"
   ]
 }
