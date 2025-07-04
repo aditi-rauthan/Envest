@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Envest/static/css/main.a1d4d297.css",
+    "main.js": "/Envest/static/js/main.02a8a9ca.js",
+    "index.html": "/Envest/index.html",
+    "main.a1d4d297.css.map": "/Envest/static/css/main.a1d4d297.css.map",
+    "main.02a8a9ca.js.map": "/Envest/static/js/main.02a8a9ca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a1d4d297.css",
+    "static/js/main.02a8a9ca.js"
+  ]
+}
