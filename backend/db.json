@@ -2,12 +2,6 @@
   "news": [],
   "portfolio": [
     {
-      "symbol": "RELIANCE",
-      "name": "Reliance Industries",
-      "quantity": 100,
-      "id": 1
-    },
-    {
       "symbol": "INFY",
       "name": "INFY",
       "quantity": 50,
