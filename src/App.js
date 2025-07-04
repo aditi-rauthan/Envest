@@ -13,27 +13,46 @@ function App() {
   const [portfolio, setPortfolio] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+ useEffect(() => {
+  const fetchAndSetData = async () => {
+    await fetchData();
+  };
 
-  const fetchData = async () => {
+  fetchAndSetData();
+}, []);
+
+const fetchData = async () => {
   try {
     setLoading(true);
+    console.log("fetchData called");
 
-    const [newsResponse, portfolioResponse] = await Promise.all([
-      api.getLiveNews(),           // ✅ Live news from your scraping server
-      api.getPortfolio()           // ✅ Portfolio from JSON server
+    const [newsResult, portfolioResult] = await Promise.allSettled([
+      api.getLiveNews(),
+      api.getPortfolio()
     ]);
 
-    setNews(newsResponse.data);
-    setPortfolio(portfolioResponse.data);
+    // Handle news
+    if (newsResult.status === 'fulfilled') {
+      setNews(newsResult.value.data); // assuming Axios
+    } else {
+      console.error("News API error:", newsResult.reason);
+    }
+
+    // Handle portfolio
+    if (portfolioResult.status === 'fulfilled') {
+      // console.log("Portfolio response:", portfolioResult.value);
+      setPortfolio(portfolioResult.value.data);
+    } else {
+      console.error("Portfolio API error:", portfolioResult.reason);
+    }
+
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Unexpected error:", error);
   } finally {
     setLoading(false);
   }
 };
+
 
 
 

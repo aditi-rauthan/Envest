@@ -113,9 +113,9 @@
 
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:3001";
-const SENTIMENT_API_URL = "https://api.meaningcloud.com/sentiment-2.1";
-const SENTIMENT_API_KEY = "your_meaningcloud_key";
+const API_BASE_URL = "http://localhost:5000";
+// const SENTIMENT_API_URL = "https://api.meaningcloud.com/sentiment-2.1";
+// const SENTIMENT_API_KEY = "your_meaningcloud_key";
 // const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 export const api = {
