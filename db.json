@@ -90,6 +90,12 @@
       "name": "INFY",
       "quantity": 1,
       "id": 17
+    },
+    {
+      "symbol": "INFY",
+      "name": "INFY",
+      "quantity": 50,
+      "id": 18
     }
   ]
 }

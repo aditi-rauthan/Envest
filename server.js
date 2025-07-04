@@ -192,6 +192,55 @@ app.get('/live-news', async (req, res) => {
   }
 });
 
+app.post('/analyze-sentiment', async (req, res) => {
+  const { headline, description = '' } = req.body;
+  const text = `${headline} ${description}`.trim();
+
+  try {
+    const response = await axios.post(
+      'https://api.openai.com/v1/chat/completions',
+      {
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'system',
+            content:
+              'You are a financial sentiment analysis AI. For a given news headline and description, analyze the sentiment towards the stock and return: (1) sentiment as "positive", "neutral", or "negative", (2) a confidence score between 60 and 99, and (3) a short reasoning in 1 sentence.'
+          },
+          {
+            role: 'user',
+            content: `Headline: ${headline}\nDescription: ${description}`
+          }
+        ],
+        temperature: 0.5,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
+      }
+    );
+
+    const assistantMessage = response.data.choices[0].message.content;
+
+    const sentiment = assistantMessage.match(/Sentiment:\s*(.*)/i)?.[1]?.toLowerCase() || 'neutral';
+    const confidence = parseInt(assistantMessage.match(/Confidence:\s*(\d+)/i)?.[1]) || 60;
+    const reasoning = assistantMessage.match(/Reasoning:\s*(.*)/i)?.[1] || 'N/A';
+
+    res.json({ sentiment, confidence, reasoning });
+
+  } catch (error) {
+    console.error('OpenAI sentiment analysis failed:', error.message);
+    res.status(500).json({
+      sentiment: 'neutral',
+      confidence: 60,
+      reasoning: 'Fallback: API call failed',
+    });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Live news server running at http://localhost:${PORT}`);
 });
